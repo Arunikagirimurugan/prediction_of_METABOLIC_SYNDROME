@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metabolic Syndrome Prediction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+   <style>
+    html
+    {
+     scroll-behavior: smooth;
+    animation-delay: 10s;
+    }
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    color: #ffffff;
+    margin: auto;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: auto;
+    /* Apply gradient animation */
+    background: linear-gradient(315deg, rgba(101,0,94,1) 3%, rgba(60,132,206,1) 38%, rgba(48,238,226,1) 68%, rgba(255,25,25,1) 98%);
+    animation: gradient 30s ease infinite; /* Smooth transition duration */
+    background-size: 400% 400%;
+    background-attachment: fixed;
+    animation-delay: 10s; /* Delay the start of the animation */
+}
+
+
+@keyframes gradient {
+    0% {
+        background: linear-gradient(315deg, #7700ff, #bd00ce, #8e2de2); /* Gradient 1 */
+    }
+    5% {
+        background: linear-gradient(315deg, #ff7e5f, #feb47b, #ff6a00); /* Gradient 2 */
+    }
+    10% {
+        background: linear-gradient(315deg, #2193b0, #6dd5ed, #00c6ff); /* Gradient 3 */
+    }
+    15% {
+        background: linear-gradient(315deg, #ff6a00, #ee0979, #ff6f61); /* Gradient 4 */
+    }
+    20% {
+        background: linear-gradient(315deg, #d16ba5, #ff7e5f, #f1c6d9); /* Gradient 5 */
+    }
+    25% {
+        background: linear-gradient(315deg, #fc00ff, #00dbde, #00416a); /* Gradient 6 */
+    }
+    30% {
+        background: linear-gradient(315deg, #ff9a9e, #fad0c4, #ff677d); /* Gradient 7 */
+    }
+    35% {
+        background: linear-gradient(315deg, #34e89e, #0f3443, #1c8e6e); /* Gradient 8 */
+    }
+    40% {
+        background: linear-gradient(315deg, #ffb347, #ffcc33, #ff7a18); /* Gradient 9 */
+    }
+    45% {
+        background: linear-gradient(315deg, #ff7a18, #af002d, #e26d6d); /* Gradient 10 */
+    }
+    50% {
+        background: linear-gradient(315deg, #ff00ff, #9c27b0, #673ab7); /* Gradient 11 */
+    }
+    55% {
+        background: linear-gradient(315deg, #ff8a00, #ff1d00, #ff4747); /* Gradient 12 */
+    }
+    60% {
+        background: linear-gradient(315deg, #ff7f00, #ffab00, #fffc00); /* Gradient 13 */
+    }
+    65% {
+        background: linear-gradient(315deg, #00ffb5, #00b8b8, #0099b7); /* Gradient 14 */
+    }
+    70% {
+        background: linear-gradient(315deg, #008b8b, #20b2aa, #40e0d0); /* Gradient 15 */
+    }
+    75% {
+        background: linear-gradient(315deg, #3e8e41, #1f7f34, #10b59f); /* Gradient 16 */
+    }
+    80% {
+        background: linear-gradient(315deg, #1e3c72, #2a5298, #36d1dc); /* Gradient 17 */
+    }
+    85% {
+        background: linear-gradient(315deg, #ffb300, #ff6347, #ff5733); /* Gradient 18 */
+    }
+    90% {
+        background: linear-gradient(315deg, #fa8231, #f39c12, #f1c40f); /* Gradient 19 */
+    }
+    95% {
+        background: linear-gradient(315deg, #a29bfe, #74b9ff, #81ecec); /* Gradient 20 */
+    }
+    100% {
+        background: linear-gradient(315deg, #7700ff, #bd00ce, #8e2de2); /* Reverts back */
+    }
+}
+
+.wave {
+    background: rgb(255 255 255 / 25%);
+    border-radius: 1000% 1000% 0 0;
+    position: fixed;
+    width: 200%;
+    height: 12em;
+    animation: wave 10s -3s linear infinite;
+    transform: translate3d(0, 0, 0);
+    opacity: 0.8;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.wave:nth-of-type(2) {
+    bottom: -1.25em;
+    animation: wave 18s linear reverse infinite;
+    opacity: 0.8;
+}
+
+.wave:nth-of-type(3) {
+    bottom: -2.5em;
+    animation: wave 20s -1s reverse infinite;
+    opacity: 0.9;
+}
+
+@keyframes wave {
+    2% {
+        transform: translateX(1);
+    }
+    25% {
+        transform: translateX(-25%);
+    }
+    50% {
+        transform: translateX(-50%);
+    }
+    75% {
+        transform: translateX(-25%);
+    }
+    100% {
+        transform: translateX(1);
+    }
+}
+
+.container {
+    width: 90%;
+    max-width: 700px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    color: #34495e;
+    font-family: 'Arial', sans-serif;  /* Change font family for the advice section */
+}
+
+h1 {
+    color: #ffffff;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+form {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 450px;
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #34495e;
+}
+
+input {
+    width: 90%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.4);
+}
+
+button {
+    background: linear-gradient(90deg, #3498db, #6dd5fa);
+    color: #ffffff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #2980b9, #3498db);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Loading Animation Styles */
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Change to a gradient background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+#loading-overlay.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.spinner {
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-top: 5px solid #ffffff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Highlighted result styles */
+.result {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    text-align: center;
+}
+
+.result.positive {
+    color: #2ecc71; /* Green for positive result */
+}
+
+.result.negative {
+    color: #e74c3c; /* Red for negative result */
+}
+
+.example-header {
+    font-weight: 600;
+    color: #a6c6dc;
+    margin-bottom: 10px;
+}
+
+.icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3498db;
+    padding: 8px;
+    border-radius: 50%;
+    color: white;
+    font-size: 24px;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+.icon-btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-3px);
+}
+
+   </style>
+</head>
+<body>
+    <div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+     </div>
+    <h1>Metabolic Syndrome Prediction</h1>
+
+    <!-- Prediction Result Display -->
+    {% if prediction %}
+    <div class="result {% if prediction == 'Yes' %}positive{% else %}negative{% endif %}">
+        <h3>Prediction Result:</h3>
+        <p>
+            {% if prediction == 'Yes' %}
+                <i class="bi bi-check-circle" style="color: #2ecc71; font-size: 40px;"></i>
+                <span style="color: #2ecc71;">{{ prediction }}</span>
+            {% else %}
+                <i class="bi bi-x-circle" style="color: #ff0000; font-size: 40px;"></i>
+                <span style="color: #7be73c;">{{ prediction }}</span>
+            {% endif %}
+        </p>
+    </div>
+{% endif %}
+
+
+    <!-- Display Medical Advice based on Prediction -->
+    <div class="card">
+        <h3>Medical Advice:</h3>
+        <p>{{ advice }}</p>
+    </div>
+  
+
+    <!-- Prediction Form -->
+    <form id="prediction-form" action="/predict" method="post">
+        <label for="waist_circ">Waist Circumference (cm):</label>
+        <input type="number" step="any" id="waist_circ" name="waist_circ" required>
+
+        <label for="bmi">BMI:</label>
+        <input type="number" step="any" id="bmi" name="bmi" required>
+
+        <label for="blood_glucose">Blood Glucose (mg/dL):</label>
+        <input type="number" step="any" id="blood_glucose" name="blood_glucose" required>
+
+        <label for="hdl">HDL Cholesterol (mg/dL):</label>
+        <input type="number" step="any" id="hdl" name="hdl" required>
+
+        <label for="triglycerides">Triglycerides (mg/dL):</label>
+        <input type="number" step="any" id="triglycerides" name="triglycerides" required>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    <!-- Example Data Cards -->
+    <div class="container">
+        <div class="card">
+            <div class="example-header">Positive Prediction (Metabolic Syndrome):</div>
+            <p>
+                Waist Circumference (cm): 105<br>
+                BMI: 32.5<br>
+                Blood Glucose (mg/dL): 160<br>
+                HDL Cholesterol (mg/dL): 35<br>
+                Triglycerides (mg/dL): 200<br>
+                <strong>Expected Prediction:</strong> "Yes" (Metabolic Syndrome)
+            </p>
+        </div>
+        <div class="card">
+            <div class="example-header">Negative Prediction (No Metabolic Syndrome):</div>
+            <p>
+                Waist Circumference (cm): 75<br>
+                BMI: 22.5<br>
+                Blood Glucose (mg/dL): 90<br>
+                HDL Cholesterol (mg/dL): 60<br>
+                Triglycerides (mg/dL): 100<br>
+                <strong>Expected Prediction:</strong> "No" (No Metabolic Syndrome)
+            </p>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Display Accuracy and Confusion Matrix -->
+    {% if accuracy %}
+    <div class="container">
+        <div class="card">
+            <h3>Model Accuracy: {{ accuracy * 100 }}%</h3>
+        </div>
+        <div class="card">
+            <h3>Confusion Matrix:</h3>
+            <img src="data:image/png;base64,{{ plot_url }}" alt="Confusion Matrix">
+        </div>
+    </div>
+    {% endif %}
+
+    <script>
+        const form = document.getElementById('prediction-form');
+        const loadingOverlay = document.getElementById('loading-overlay');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent actual form submission for demo
+            loadingOverlay.classList.add('visible');
+
+            // Simulate a 3-second loading time
+            setTimeout(() => {
+                loadingOverlay.classList.remove('visible');
+                form.submit(); // Submit the form after the delay
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
